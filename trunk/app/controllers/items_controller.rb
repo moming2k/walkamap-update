@@ -1,8 +1,12 @@
 class ItemsController < ApplicationController
+  in_place_edit_for :item, :address 
+  in_place_edit_for :item, :name 
+  in_place_edit_for :item, :tel 
+  protect_from_forgery :only => [:update, :delete, :create]
   # GET /items
   # GET /items.xml
   def index
-    @items = Item.find(:all)
+    @items = Item.paginate(:page => params[:page], :order => "lat desc, lng desc")
 
     respond_to do |format|
       format.html # index.html.erb

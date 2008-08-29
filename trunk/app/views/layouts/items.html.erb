@@ -4,8 +4,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <%= javascript_include_tag :defaults %>
   <title>Items: <%= controller.action_name %></title>
-  <%= stylesheet_link_tag 'scaffold' %>
+  <%= stylesheet_link_tag 'scaffold','pagination' %>
+  <style type='text/css'>
+	    html {
+	      margin: 0;
+	      padding: 0;
+	      background: #999;
+	      font: normal 76% "Lucida Grande", Verdana, Helvetica, sans-serif; }
+
+	    body {
+	      margin: 2em;
+	      padding: 2em;
+	      border: 2px solid gray;
+	      background: white;
+	      color: #222; }
+
+	    h1 {
+	      font-size: 2em;
+	      font-weight: normal;
+	      margin: 0 0 1em 0; }
+
+	    h2 {
+	      font-size: 1.4em;
+	      margin: 1em 0 .5em 0; }
+
+	    pre {
+	      font-size: 13px;
+	      font-family: Monaco, "DejaVu Sans Mono", "Bitstream Vera Mono", "Courier New", monospace; }
+	  </style>
 </head>
 <body>
 

@@ -7,3 +7,7 @@ setup Facebook linkage http://www.facebook.com/
 setup Twitter lineage
 
 import contact
+
+iPhone:
+
+ActiveRecord on iPhone http://github.com/aptiva/activerecord/tree/master

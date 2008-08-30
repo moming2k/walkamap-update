@@ -7,3 +7,37 @@ apt-get install libsqlite3-dev
 gem install sqlite3-ruby
 
 script/plugin install git://github.com/ajh/acts_as_soft_deletable.git
+
+=== Migration
+
+and setup the deleted table with the following migration:
+
+    class AddActsAsSoftDeletable < ActiveRecord::Migration
+      def self.up
+        SomeModel::Deleted.create_table
+      end
+
+      def self.down
+        SomeModel::Deleted.drop_table
+      end
+    end
+
+Any changes to the original table (such as adding a column) should be reflected
+in the deleted table. Use the update_columns method:
+
+    class AddSkuColumn < ActiveRecord::Migration
+      def self.up
+        add_column 'items', 'sku', :string
+        Item::Deleted.update_columns # will add sku column
+      end
+
+      def self.down
+        remove_column 'items', 'sku'
+        Item::Deleted.update_columns # will remove sku column
+      end
+    end
+
+Note that update_columns will happily delete columns if asked. In this case a
+warning will be issued when the migration is run alerting the developer to the
+situation. This warning can be disabled, see:
+ActiveRecord::Acts::SoftDeletable#remove_column_warning_enabled=

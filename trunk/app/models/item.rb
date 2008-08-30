@@ -9,4 +9,9 @@ class Item < ActiveRecord::Base
       find(:all,*args)
     end
   end
+  
+  def tel
+    return "  NIL  " if read_attribute(:tel).blank? 
+    return read_attribute(:tel)
+  end
 end

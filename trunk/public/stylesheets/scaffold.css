@@ -52,3 +52,13 @@ a:hover { color: #fff; background-color:#000; }
   list-style: square;
 }
 
+tr.even td{
+	background-color:#EEF;
+
+}
+
+tr.odd td{
+	background-color:#CCF;
+}
+
+

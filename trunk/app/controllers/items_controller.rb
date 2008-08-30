@@ -6,7 +6,14 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.xml
   def index
-    @items = Item.paginate(:page => params[:page], :order => "lat desc, lng desc")
+    @filter_checked = params[:filter_checked] || session[:filter_checked] || false
+    session[:page] = params[:page] || session[:page]
+    session[:filter_checked] = @filter_checked
+    
+    @conditions = ["is_checked =?",@filter_checked]
+    
+    @items = Item.paginate(:page => session[:page], :conditions => @conditions, :order => "lat desc, lng desc")
+    
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,9 +32,15 @@ class ItemsController < ApplicationController
     end
   end
   
+  def set_filter
+    
+  end
+  
   def search
     @keyword = params[:keyword] || session[:keyword]
+    @filter_checked = params[:filter_checked] || session[:filter_checked] || false
     session[:keyword] = @keyword
+    session[:filter_checked] = @filter_checked
     @items = Item.paginate :page => params[:page], :conditions => ["name Like ? or address Like ?","%#{@keyword}\%","%#{@keyword}\%"],:order => "lat desc, lng desc"
     respond_to do |format|
       format.html # index.html.erb

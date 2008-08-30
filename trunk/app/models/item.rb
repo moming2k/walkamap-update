@@ -11,7 +11,15 @@ class Item < ActiveRecord::Base
   end
   
   def tel
-    return "  NIL  " if read_attribute(:tel).blank? 
+    return "NIL" if read_attribute(:tel).blank? 
     return read_attribute(:tel)
+  end
+  
+  def tel=(value)
+    if value == "NIL"
+      write_attribute(:tel,"") 
+    else
+      write_attribute(:tel,value) 
+    end
   end
 end

@@ -41,7 +41,7 @@ class ItemsController < ApplicationController
     @filter_checked = params[:filter_checked] || session[:filter_checked] || false
     session[:keyword] = @keyword
     session[:filter_checked] = @filter_checked
-    @items = Item.paginate :page => params[:page], :conditions => ["name Like ? or address Like ?","%#{@keyword}\%","%#{@keyword}\%"],:order => "lat desc, lng desc"
+    @items = Item.paginate :page => params[:page], :conditions => ["name Like ? or address Like ? or id = ? or tel Like ?","%#{@keyword}\%","%#{@keyword}\%",@keyword ,"%#{@keyword}\%"],:order => "lat desc, lng desc"
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @items }

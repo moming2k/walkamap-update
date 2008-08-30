@@ -1,9 +1,16 @@
+
+<%= render :partial => 'load_map' %>
+<%= link_to_function "show map", "$('map').show();" %> <%= link_to_function "hide map", "$('map').hide();" %>
+<br/>
+<br/>
+
 <h1>Listing items</h1>
 
 <%= form_tag :action => "search"  %>
 <%= text_field_tag('keyword', @keyword, :size => '20', :maxlength => '20') %><%= link_to 'Cancel Search', items_path %>
 </form>
-
+<div id="map" class="map">
+</div>
 
 <div class="digg_pagination">
 <%= will_paginate @items %>

@@ -34,9 +34,11 @@
 	      font-size: 13px;
 	      font-family: Monaco, "DejaVu Sans Mono", "Bitstream Vera Mono", "Courier New", monospace; }
 	  </style>
-</head>
-<body>
-
+	  
+		
+		    <%= yield :head -%>
+		  </head>
+		  <body <%= yield :body_load -%>>
 <p style="color: green"><%= flash[:notice] %></p>
 
 <%= yield  %>

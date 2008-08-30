@@ -1,0 +1,75 @@
+<% content_for('head') do %>
+ 	<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAApMkWLoUHOxjom9ODjJY2qhRoI9foflBXlzG4CGuVNeDA3TFtZBToWzZHJp2yfJgLL7ybBsgKNoxpsw"
+	      type="text/javascript"></script>
+	<script type="text/javascript">
+  var map = null;
+  var marker = null;
+	    //<![CDATA[
+
+	function load() {
+	  if (GBrowserIsCompatible()) {
+	    map = new GMap2(document.getElementById("map"));
+	    map.setCenter(new GLatLng(37.4419, -122.1419), 17);
+			var mapControl = new GMapTypeControl();
+			map.addControl(mapControl);
+			map.addControl(new GLargeMapControl());
+	  }
+	}
+	
+	function findPos(obj) {
+		var curleft = curtop = 0;
+		if (obj.offsetParent) {
+			curleft = obj.offsetLeft
+			curtop = obj.offsetTop
+			while (obj = obj.offsetParent) {
+				curleft += obj.offsetLeft
+				curtop += obj.offsetTop
+			}
+		}
+		if (navigator.appName == "Microsoft Internet Explorer"){
+		curtop = document.body.scrollTop;
+		}
+		else{
+			curtop = window.pageYOffset ;
+		}
+		
+		return [curleft + 73,curtop];
+	}
+	
+	function display_map(parent,lat, lng)
+	{
+		//get the named menu
+		map.clearOverlays();
+		center = new GLatLng(lat,lng);
+		marker = new GMarker(center, {draggable: true});
+
+    GEvent.addListener(marker, "dragstart", function() {
+      map.closeInfoWindow();
+    });
+
+    GEvent.addListener(marker, "dragend", function() {
+      marker.openInfoWindowHtml("Just bouncing along...");
+    });
+
+    map.addOverlay(marker);
+		
+		map.panTo(center);
+		var menu_element = document.getElementById("map");
+		//override the 'display:none;' style attribute
+		menu_element.style.display = "";
+		//get the placement of the element that invoked the menu...
+		var placement = findPos(parent);
+		//...and put the menu there
+		menu_element.style.left = placement[0] + "px";
+		menu_element.style.top = placement[1] + "px";
+		
+		
+	}
+
+	//]]>
+	</script>
+<% end %>
+
+<% content_for('body_load') do %>
+onload="load()" onunload="GUnload()"
+<% end %>

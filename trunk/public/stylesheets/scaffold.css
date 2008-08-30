@@ -61,4 +61,27 @@ tr.odd td{
 	background-color:#CCF;
 }
 
+#map {
+  position: absolute;
+/*  position:fixed;*/
+  right: 0;
+  top: 0;
+/*  display: none;*/
+  color: #212121;
+  background: #fff4af url(../images/loading.gif) no-repeat 4px center;
+  padding: 2px 4px 2px 24px;
+  min-height: 400px;
+  min-width: 200px; 
+  vertical-align: middle;
+  z-index: 100;
+  border-bottom: 1px solid #9c9c9c;
+  opacity: 0.90;
+  font-weight: bold;
+}
+
+.map {
+/*  display: none;*/
+  background: url(../images/loading.gif) no-repeat 4px center;
+  padding: 2px 4px 2px 24px;
+}
 

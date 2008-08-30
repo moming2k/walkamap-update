@@ -5,3 +5,5 @@ http://github.com/mislav/will_paginate/wikis/installation
 
 apt-get install libsqlite3-dev
 gem install sqlite3-ruby
+
+script/plugin install git://github.com/ajh/acts_as_soft_deletable.git

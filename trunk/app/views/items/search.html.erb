@@ -1,10 +1,4 @@
 <h1>Listing items</h1>
-
-
-<%= form_tag :action => "search"  %>
-<%= text_field_tag('keyword', '', :size => '20', :maxlength => '20') %>
-</form>
-
 <div class="digg_pagination">
 <%= will_paginate @items %>
 </div>
@@ -12,6 +6,7 @@
 
 
 
+<%= link_to 'Cancel Search', items_path %>
 <%= render :partial => 'table'  %>
 
 

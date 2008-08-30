@@ -24,6 +24,16 @@ class ItemsController < ApplicationController
       format.xml  { render :xml => @item }
     end
   end
+  
+  def search
+    @keyword = params[:keyword] || session[:keyword]
+    session[:keyword] = @keyword
+    @items = Item.paginate :page => params[:page], :conditions => ["name Like ? or address Like ?","%#{@keyword}\%","%#{@keyword}\%"],:order => "lat desc, lng desc"
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @items }
+    end
+  end
 
   # GET /items/new
   # GET /items/new.xml

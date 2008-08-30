@@ -16,7 +16,7 @@
 	  <td><%= item.id %></td> 
     <td><%= in_place_editor_field :item, 'name' %></td>
     <td><%= in_place_editor_field :item, 'tel' %></td>
-    <td><%= in_place_editor_field :item, 'address' , {} , { :rows => 2 }%></td>
+    <td><%= in_place_editor_field :item, 'address' , {} , { :cols => (item.address.chars.size + 10) }%></td>
 		<td><% link_to 'Show', item %></td>
     <td><%= link_to 'Edit', edit_item_path(item) %></td>
     <td><%= link_to 'Destroy', item, :confirm => 'Are you sure?', :method => :delete %></td>

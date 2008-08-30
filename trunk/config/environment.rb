@@ -67,3 +67,8 @@ Rails::Initializer.run do |config|
 end
 
 require 'will_paginate'
+if `hostname`.strip == "Chris-2"
+  GOOGLE_MAP_API = "ABQIAAAApMkWLoUHOxjom9ODjJY2qhRoI9foflBXlzG4CGuVNeDA3TFtZBToWzZHJp2yfJgLL7ybBsgKNoxpsw"
+else
+  GOOGLE_MAP_API = "ABQIAAAApMkWLoUHOxjom9ODjJY2qhTLSJgPt-vj1YYOSEUU14LCfzVtXRSpiHZawtEaJoexmbolkz0kGbSzQQ"
+end

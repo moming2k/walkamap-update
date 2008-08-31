@@ -68,7 +68,6 @@ tr.odd td{
   top: 0;
 /*  display: none;*/
   color: #212121;
-  background: #fff4af url(../images/loading.gif) no-repeat 4px center;
   padding: 2px 4px 2px 24px;
   min-height: 200px;
   min-width: 200px; 
@@ -81,7 +80,6 @@ tr.odd td{
 
 .map {
 /*  display: none;*/
-  background: url(../images/loading.gif) no-repeat 4px center;
   padding: 2px 4px 2px 24px;
 }
 

@@ -15,8 +15,8 @@
 	  <% @item = item %>
 	  <% form_for(@item) do |f| %>
 	  <td><%= item.id %></td> 
-    <td><%= in_place_editor_field :item, 'name' %></td>
-    <td><%= in_place_editor_field :item, 'tel' %></td>
+    <td><%= in_place_editor_field :item, 'name' , {} , { :cols => (item.name.chars.size + 10) }%></td>
+		<td><%= in_place_editor_field :item, 'tel' , {} , { :cols => (item.tel.chars.size + 10) }%></td>
     <td><%= in_place_editor_field :item, 'address' , {} , { :cols => (item.address.chars.size + 10) }%></td>
 		<td><% link_to 'Show', item %></td>
     <td><%= link_to 'Edit', edit_item_path(item) %></td>

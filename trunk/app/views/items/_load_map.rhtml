@@ -84,7 +84,7 @@
 			new Ajax.Request( '/items/set_location/'+record_id , {
 			  method: 'get',
 			  onSuccess: function(transport, json){
-				      map_field_div.firstChild.nodeValue = "Show map updated";
+				      map_field_div.firstChild.nodeValue = "* Show map";
 				    },
 			  parameters: {location: marker_location.lat()+',' +marker_location.lng()}
 			  });

@@ -36,6 +36,15 @@ class ItemsController < ApplicationController
     
   end
   
+  def set_location
+    @item = Item.find(params[:id])
+    lat , lng = params[:location].split(",")
+    @item.lat = lat
+    @item.lng = lng
+    @item.save!
+    render :text => ""
+  end
+  
   def search
     @keyword = params[:keyword] || session[:keyword]
     @filter_checked = params[:filter_checked] || session[:filter_checked] || false

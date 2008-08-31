@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :items,:collection => { :search => :any }
+  map.resources :items,:collection => { :search => :any , :set_location => :get }
 
   # The priority is based upon order of creation: first created -> highest priority.
 

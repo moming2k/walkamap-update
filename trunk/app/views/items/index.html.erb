@@ -1,4 +1,7 @@
+
 <%= render :partial => 'load_map' %>
+<%= javascript_include_tag 'set_position_button' %>
+
 
 <%= link_to_function "show map", "$('map').show();" %> <%= link_to_function "hide map", "$('map').hide();" %>
 <br/>
@@ -10,6 +13,7 @@
 </form>
 <div id="map" class="map">
 </div>
+<div id="map_address">hihi</div>
 
 <div class="digg_pagination">
 <%= will_paginate @items %>

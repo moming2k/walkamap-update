@@ -4,6 +4,11 @@
 	<script type="text/javascript">
   var map = null;
   var marker = null;
+  var marker_location = null;
+  var marker_lat = null;
+  var market_lng = null;
+  var addressDivNode = null;
+  var record_id = null;
 	    //<![CDATA[
 
 	function load() {
@@ -33,13 +38,16 @@
 			curtop = window.pageYOffset ;
 		}
 		
-		return [curleft + 73,curtop];
+		return [curleft + 73,curtop+30];
 	}
 	
-	function display_map(parent,lat, lng)
+	function display_map(parent,lat, lng,address , record )
 	{
 		//get the named menu
+		marker_location = null;
+		record_id = record;
 		map.clearOverlays();
+		
 		center = new GLatLng(lat,lng);
 		marker = new GMarker(center, {draggable: true});
 
@@ -48,7 +56,7 @@
     });
 
     GEvent.addListener(marker, "dragend", function() {
-      marker.openInfoWindowHtml("Just bouncing along...");
+      marker_location = marker.getLatLng();
     });
 
     map.addOverlay(marker);
@@ -62,12 +70,27 @@
 		//...and put the menu there
 		menu_element.style.left = placement[0] + "px";
 		menu_element.style.top = placement[1] + "px";
+
+		addressControl = new TextualZoomControl();
+		map.addControl(addressControl);
+		addressControl.setAddress(address);
+	}
+	
+	function save_change() {
+		if (marker_location) {
+			new Ajax.Request( '/items/set_location/'+record_id , {
+			  method: 'get',
+			  parameters: {location: marker_location.lat()+',' +marker_location.lng()}
+			  });
+			// alert(marker_location.lat()+',' +marker_location.lng());
+		}
 		
 		
 	}
 
 	//]]>
 	</script>
+	
 <% end %>
 
 <% content_for('body_load') do %>

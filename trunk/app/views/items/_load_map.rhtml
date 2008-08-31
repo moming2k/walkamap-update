@@ -9,6 +9,7 @@
   var market_lng = null;
   var addressDivNode = null;
   var record_id = null;
+	var map_field_div = null;
 	    //<![CDATA[
 
 	function load() {
@@ -44,6 +45,7 @@
 	function display_map(parent,lat, lng,address , record )
 	{
 		//get the named menu
+		map_field_div = parent;
 		marker_location = null;
 		record_id = record;
 		map.clearOverlays();
@@ -80,6 +82,9 @@
 		if (marker_location) {
 			new Ajax.Request( '/items/set_location/'+record_id , {
 			  method: 'get',
+			  onSuccess: function(transport, json){
+				      map_field_div.firstChild.nodeValue = "Show map updated";
+				    },
 			  parameters: {location: marker_location.lat()+',' +marker_location.lng()}
 			  });
 			// alert(marker_location.lat()+',' +marker_location.lng());

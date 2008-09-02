@@ -1,0 +1,23 @@
+<p>
+  <b>Name:</b>
+  <%=h @sub_region.name %>
+</p>
+
+<p>
+  <b>Lat:</b>
+  <%=h @sub_region.lat %>
+</p>
+
+<p>
+  <b>Lng:</b>
+  <%=h @sub_region.lng %>
+</p>
+
+<p>
+  <b>Region:</b>
+  <%=h @sub_region.region_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_sub_region_path(@sub_region) %> |
+<%= link_to 'Back', sub_regions_path %>

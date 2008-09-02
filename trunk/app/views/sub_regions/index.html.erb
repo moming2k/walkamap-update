@@ -1,0 +1,30 @@
+<h1>Listing sub_regions</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Lat</th>
+    <th>Lng</th>
+    <th>Region</th>
+  </tr>
+
+<% for sub_region in @sub_regions %>
+  <tr>
+    <td><%=h sub_region.name %>|
+    <% if (sub_region.name.chars.index("號") ) %>
+    <%=h sub_region.name[sub_region.name.index("號")+3,sub_region.name.size] %>
+    <% end %>
+    </td>
+    <td><%=h sub_region.lat %></td>
+    <td><%=h sub_region.lng %></td>
+    <td><%=h sub_region.region_id %></td>
+    <td><%= link_to 'Show', sub_region %></td>
+    <td><%= link_to 'Edit', edit_sub_region_path(sub_region) %></td>
+    <td><%= link_to 'Destroy', sub_region, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New sub_region', new_sub_region_path %>

@@ -3,6 +3,8 @@ class Item < ActiveRecord::Base
   @@per_page = 50
   
   acts_as_soft_deletable
+  validates_presence_of :name
+  validates_presence_of :address
   
   def self.find_checked(checked, *args)
     with_scope :find => { :conditions => [ 'is_checked = ?', checked ] } do

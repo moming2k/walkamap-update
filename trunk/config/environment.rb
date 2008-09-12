@@ -65,7 +65,7 @@ Rails::Initializer.run do |config|
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
 end
-
+$KCODE = 'u'
 require 'will_paginate'
 if `hostname`.strip == "Chris-2"
   GOOGLE_MAP_API = "ABQIAAAApMkWLoUHOxjom9ODjJY2qhRoI9foflBXlzG4CGuVNeDA3TFtZBToWzZHJp2yfJgLL7ybBsgKNoxpsw"

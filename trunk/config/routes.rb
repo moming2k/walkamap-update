@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :sub_region2s
+
   map.resources :sub_regions
 
   map.resources :regions

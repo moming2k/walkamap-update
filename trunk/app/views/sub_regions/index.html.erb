@@ -11,16 +11,18 @@
 <% for sub_region in @sub_regions %>
   <tr>
     <td><%=h sub_region.name %>|
-    <% if (sub_region.name.chars.index("號") ) %>
-    <%=h sub_region.name[sub_region.name.index("號")+3,sub_region.name.size] %>
-    <% end %>
+      <% sub_region.name.chars.scan(/號(.*[廣場|中心|大樓|酒店|中心|大廈|坊|商場])/) { |matched| -%>
+	      <%= h matched %>
+	      <% SubRegion2.find_or_create_by_name(matched.to_s) %>
+      <% } %>
     </td>
     <td><%=h sub_region.lat %></td>
     <td><%=h sub_region.lng %></td>
     <td><%=h sub_region.region_id %></td>
     <td><%= link_to 'Show', sub_region %></td>
     <td><%= link_to 'Edit', edit_sub_region_path(sub_region) %></td>
-    <td><%= link_to 'Destroy', sub_region, :confirm => 'Are you sure?', :method => :delete %></td>
+		<td><%= link_to_remote "Destroy", :url => sub_region,:confirm => 'Are you sure?', :method => :delete %></td>
+    <td><% link_to 'Destroy', sub_region, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

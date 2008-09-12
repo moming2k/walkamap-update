@@ -1,8 +1,12 @@
 class RegionsController < ApplicationController
   # GET /regions
   # GET /regions.xml
+  # 
+  in_place_edit_for :region, :location
+  protect_from_forgery :only => [:update, :delete, :create]
+   
   def index
-    @regions = Region.find(:all)
+    @regions = Region.find(:all , :order => "location")
 
     respond_to do |format|
       format.html # index.html.erb

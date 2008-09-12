@@ -7,14 +7,19 @@
     <th>Lng</th>
   </tr>
 
+
 <% for region in @regions %>
-  <tr>
+  <tr class="<%= cycle("even", "odd", :name => "row_class") -%>" id="row_<%= region.id %>">
+	  <% @region = region %>
+	  <% form_for(@region) do |f| %> 
     <td><%=h region.name %></td>
+    <td><%= in_place_editor_field :region, 'location' , {} , { :cols => 1 }%></td>
     <td><%=h region.lat %></td>
     <td><%=h region.lng %></td>
     <td><%= link_to 'Show', region %></td>
     <td><%= link_to 'Edit', edit_region_path(region) %></td>
     <td><%= link_to 'Destroy', region, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

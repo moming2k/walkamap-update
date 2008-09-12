@@ -1,0 +1,22 @@
+<h1>Listing sub_region2s</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Region</th>
+  </tr>
+
+<% for sub_region2 in @sub_region2s %>
+  <tr class="<%= cycle("even", "odd", :name => "row_class") -%>" id="row_<%= sub_region2.id %>">
+    <td><%=h sub_region2.name %></td>
+    <td><%=h sub_region2.region_id %></td>
+    <td><%= link_to 'Show', sub_region2 %></td>
+    <td><%= link_to 'Edit', edit_sub_region2_path(sub_region2) %></td>
+    <td><%= link_to 'Destroy', sub_region2, :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New sub_region2', new_sub_region2_path %>

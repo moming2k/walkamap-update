@@ -140,4 +140,47 @@ namespace 'db' do
       end
     }
   end
+  
+  desc 'calculate the subregion to repeat dup record'
+  task :batch_update7 => :environment do
+    while true do
+      deleted = false
+      SubRegion2.find(:all , :order => "name").each { |item|
+        item2_s = SubRegion2.find(:all, :conditions => ["name Like ? ","#{item.name}%"])
+        if item2_s.size > 1
+          item2_s.each { |item2|
+            item2.destroy
+            deleted = true
+          }
+          p "break at #{item.id}"
+          SubRegion2.create(:name => item.name)
+          break
+        end
+      }
+      break unless deleted
+    end
+  end
+  
+  desc 'calculate the subregion to repeat dup record'
+  task :batch_update8 => :environment do
+    while true do
+      deleted = false
+      file = File.open("result_8.html","w")
+      SubRegion2.find(:all , :order => "name").each { |item|
+        p item.name
+        file.write(item.name+"\r\n\r")
+        item.name.gsub!(/廣場/,'廣場|')
+        item.name.gsub!(/中心/,'中心|')
+        item.name.gsub!(/大樓/,'大樓|')
+        item.name.gsub!(/酒店/,'酒店|')
+        item.name.gsub!(/中心/,'中心|')
+        item.name.gsub!(/大廈/,'大廈|')
+        item.name.gsub!(/坊/,'坊|')
+        item.name.gsub!(/商場/,'商場|')
+        item.save
+      }
+      file.close
+      break unless deleted
+    end
+  end
 end

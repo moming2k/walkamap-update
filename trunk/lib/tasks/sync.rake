@@ -22,6 +22,7 @@ namespace 'sync' do
     }
   end
   
+  desc "sync mysql to sqlite"
   task :mysql_to_lite => :environment do
     class MyItem < ActiveRecord::Base
        establish_connection :mysql
@@ -34,13 +35,9 @@ namespace 'sync' do
     end
     
     p "sync to sqlite"
-    LiteItem.find(:all).each { |item|
-      temp_item = MyItem.find_or_create_by_uuid(item.uuid)
-      temp_item.attributes = item.attributes
-      temp_item.save
+    LiteItem.delete_all
+    MyItem.find(:all).each { |item|
+      temp_item = LiteItem.create(item.attributes)
     }
   end
-  
-  
-
 end

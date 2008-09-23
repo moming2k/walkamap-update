@@ -31,6 +31,7 @@ ActionController::Routing::Routes.draw do |map|
     iphone.signup  "/i/signup",  :action => 'signup'
     iphone.report  "/i/report",  :action => 'report'
     iphone.get_id  "/i/get_id",  :action => 'getID'
+    iphone.bookmark "/i/bookmark" , :action => 'bookmark'
     iphone.report  "/i/",  :action => 'index'
   end
   

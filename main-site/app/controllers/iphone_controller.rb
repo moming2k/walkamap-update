@@ -7,6 +7,11 @@ class IphoneController < ApplicationController
   def login
   end
   
+  def getID
+    temp_id = Time.now.strftime("%H%m%S") + UUID.timestamp_create.to_s[0..7]
+    render :text => temp_id
+  end
+  
   def logout
     
   end

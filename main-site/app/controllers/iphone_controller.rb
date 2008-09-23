@@ -25,9 +25,9 @@ class IphoneController < ApplicationController
   
   private
   def allow_to
-    super :all, :only => [:index, :show]
-    super :admin, :all => true
-    super :user, :only => [:new, :create]
+    super :all, :all => true
+    # super :admin, :all => true
+    # super :user, :only => [:new, :create]
   end
 
 end

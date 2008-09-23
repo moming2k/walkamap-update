@@ -1,4 +1,6 @@
 class IphoneController < ApplicationController
+  skip_before_filter :login_required, :except => [:index, :login , :signup , :report , :about]
+  
   def index
   end
 
@@ -9,7 +11,7 @@ class IphoneController < ApplicationController
     
   end
 
-  def sigup
+  def signup
   end
 
   def report

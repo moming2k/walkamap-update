@@ -15,6 +15,12 @@ class IphoneController < ApplicationController
   def logout
     
   end
+  
+  def bookmark
+    render :text => "success"
+  rescue
+    render :text => "failed"
+  end
 
   def signup
   end

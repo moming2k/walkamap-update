@@ -4,6 +4,10 @@ class IphoneController < ApplicationController
 
   def login
   end
+  
+  def logout
+    
+  end
 
   def sigup
   end

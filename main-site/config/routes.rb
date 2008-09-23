@@ -25,6 +25,14 @@ ActionController::Routing::Routes.draw do |map|
     accounts.signup  "/signup",  :action => 'signup'
   end
   
+  map.with_options(:controller => 'iphone') do |iphone|
+    iphone.login   "/i/login",   :action => 'login'
+    iphone.logout  "/i/logout",  :action => 'logout'
+    iphone.signup  "/i/signup",  :action => 'signup'
+    iphone.report  "/i/report",  :action => 'report'
+    iphone.report  "/i/",  :action => 'index'
+  end
+  
   map.with_options(:controller => 'home') do |home|
     home.home '/', :action => 'index'
     home.latest_comments '/latest_comments.rss', :action => 'latest_comments', :format=>'rss'

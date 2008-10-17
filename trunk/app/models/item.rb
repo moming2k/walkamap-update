@@ -1,8 +1,9 @@
 class Item < ActiveRecord::Base
+  establish_connection :sqlite
   cattr_reader :per_page
   @@per_page = 50
   
-  acts_as_soft_deletable
+  # acts_as_soft_deletable
   validates_presence_of :name
   validates_presence_of :address
   

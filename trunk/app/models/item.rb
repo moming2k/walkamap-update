@@ -3,6 +3,8 @@ class Item < ActiveRecord::Base
   cattr_reader :per_page
   @@per_page = 50
   
+  acts_as_cached
+  
   # acts_as_soft_deletable
   validates_presence_of :name
   validates_presence_of :address
